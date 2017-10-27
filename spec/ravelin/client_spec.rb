@@ -4,7 +4,7 @@ describe Ravelin::Client do
   describe '#initialize' do
     it 'initializes a Faraday connection' do
       expect(Faraday).to receive(:new).
-        with('https://api.ravelin.com', kind_of(Hash))
+        with('https://api-tls12.ravelin.com', kind_of(Hash))
 
       described_class.new(api_key: 'abc')
     end
@@ -102,7 +102,7 @@ describe Ravelin::Client do
     end
 
     it 'calls Ravelin with correct headers and body' do
-      stub = stub_request(:post, 'https://api.ravelin.com/v2/ping').
+      stub = stub_request(:post, 'https://api-tls12.ravelin.com/v2/ping').
         with(
           headers: { 'Authorization' => 'token abc' },
           body: { name: 'value' }.to_json,
@@ -118,7 +118,7 @@ describe Ravelin::Client do
 
     context 'response' do
       before do
-        stub_request(:post, 'https://api.ravelin.com/v2/ping').
+        stub_request(:post, 'https://api-tls12.ravelin.com/v2/ping').
           to_return(
             status: response_status,
             body: body
@@ -171,7 +171,7 @@ describe Ravelin::Client do
 
     before do
       allow(Ravelin::Event).to receive(:new).and_return(event)
-      stub_request(:post, 'https://api.ravelin.com/v2/ping').
+      stub_request(:post, 'https://api-tls12.ravelin.com/v2/ping').
         and_return(status: status_code, body: "null")
     end
 
@@ -197,7 +197,7 @@ describe Ravelin::Client do
 
     before do
       allow(Ravelin::Event).to receive(:new).and_return(event)
-      stub_request(:post, 'https://api.ravelin.com/v2/ping').
+      stub_request(:post, 'https://api-tls12.ravelin.com/v2/ping').
         and_return(status: status_code, body: "{}")
     end
 

@@ -9,7 +9,7 @@ end
 
 module Ravelin
   class Client
-    API_BASE = 'https://api.ravelin.com'
+    API_BASE = 'https://api-tls12.ravelin.com'
 
     def initialize(api_key:)
       @api_key = api_key
